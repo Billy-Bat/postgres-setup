@@ -1,5 +1,5 @@
-docker run -p 5432:5432 \
-           --name "postgresqldbtest" \
+docker run --name "postgresqldbtest" \
+           -p 5432:5432 \
            --network "dbnetworktest" \
            -e "POSTGRES_USER=main" \
            -e "POSTGRES_PASSWORD=main" \

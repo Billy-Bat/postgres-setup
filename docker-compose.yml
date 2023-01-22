@@ -5,16 +5,42 @@ services:
     postgresqldb:
       image: "postgres:latest"
       restart: "always"
+      ports: 
+        - 5432:5432
       environment:
+        POSTGRES_USER: "pg-admin_user"
         POSTGRES_PASSWORD: "passw0rd"
-      network:
+      volumes:
+        - db-data:/var/lib/postgresql/data
+      networks:
         - dbnetwork
 
     pgadmin:
       image: "dpage/pgadmin4"
-      ports:
+      restart: "always"
+      ports: 
         - 80:80
-      network:
+      expose:
+        - 80
+      environment:
+        PGADMIN_DEFAULT_EMAIL: "billybat2046@gmail.com"
+        PGADMIN_DEFAULT_PASSWORD: "main"
+        PGADMIN_LISTEN_PORT: 80
+      volumes:
+        - pgadmin-data:/home/pgadmin
+      depends_on:
+        - postgresqldb
+      networks:
         - dbnetwork
+
+
+volumes:
+  db-data: 
+  pgadmin-data:
+
+networks:
+  dbnetwork:
+    driver: bridge
+
 
     

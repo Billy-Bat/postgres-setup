@@ -5,6 +5,6 @@ docker run --name "pgadmin4test" \
            --network "dbnetworktest" \
            -e "PGADMIN_DEFAULT_EMAIL=billybat2046@gmail.com" \
            -e "PGADMIN_DEFAULT_PASSWORD=main" \
-           -e "SCRIPT_NAME-/pgadmin4" \
+           -e "SCRIPT_NAME=/pgadmin4" \
            -v data:/home/pgadmin \
            dpage/pgadmin4
